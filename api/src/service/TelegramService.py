@@ -4,23 +4,23 @@ from python_framework import Service, ServiceMethod, EnumItem
 
 
 @Service()
-class VoiceService:
+class TelegramService:
 
     @ServiceMethod(requestClass=[[str]])
-    def speakAll(self, textList):
+    def messageAll(self, textList):
         serviceReturn = None
         try:
-            serviceReturn = self.emitter.voice.speakAll([{"text": text} for text in textList])
+            serviceReturn = self.emitter.telegram.messageAll([{"message": text} for text in textList])
         except Exception as exception:
-            log.failure(self.speakAll, 'Not possible to speak all', exception=exception, muteStackTrace=True)
+            log.failure(self.messageAll, 'Not possible to speak all', exception=exception, muteStackTrace=True)
         return serviceReturn
 
 
     @ServiceMethod(requestClass=[str])
-    def speak(self, text):
+    def message(self, text):
         serviceReturn = None
         try:
-            serviceReturn = self.speakAll([text])
+            serviceReturn = self.messageAll([text])
         except Exception as exception:
-            log.failure(self.speak, 'Not possible to speak', exception=exception, muteStackTrace=True)
+            log.failure(self.message, 'Not possible to speak', exception=exception, muteStackTrace=True)
         return serviceReturn

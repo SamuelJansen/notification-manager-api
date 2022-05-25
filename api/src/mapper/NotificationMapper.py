@@ -1,7 +1,6 @@
-from python_framework import Mapper, MapperMethod, EnumItem
+from python_framework import Mapper, MapperMethod, EnumItem, AuditoryUtil
 
 from enumeration.NotificationStatus import NotificationStatus
-from util import AuditoryUtil
 import Notification
 import NotificationDto
 

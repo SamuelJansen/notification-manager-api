@@ -1,6 +1,6 @@
 from python_helper import Constant as c
 from python_helper import log, ObjectHelper, StringHelper
-from python_framework import Service, ServiceMethod, EnumItem
+from python_framework import Service, ServiceMethod, EnumItem, AuditoryUtil
 
 from config import NotificationConfig
 from enumeration.NotificationSeverity import NotificationSeverity
@@ -16,12 +16,14 @@ class NotificationService:
     def notifyAll(self, modelList):
         serviceException = None
         nextModelStatus = None
+        notificationList = [
+            f'{model.severity} from {StringHelper.join(StringHelper.join(model.createdBy.split(c.DASH), character=c.SPACE).split(c.DOT), character=c.SPACE)}: {model.message}'
+            for model in modelList
+            if NotificationConfig.CURRENT_NOTIFICARION_DEGREE <= NotificationSeverity.map(model.severity).degree
+        ]
         try:
-            serviceReturn = self.service.voice.speakAll([
-                f'{model.severity} from {StringHelper.join(StringHelper.join(model.createdBy.split(c.DASH), character=c.SPACE).split(c.DOT), character=c.SPACE)}: {model.message}'
-                for model in modelList
-                if NotificationConfig.CURRENT_NOTIFICARION_DEGREE <= NotificationSeverity.map(model.severity).degree
-            ])
+            serviceReturn = self.service.voice.speakAll(notificationList)
+            serviceReturn = self.service.telegram.messageAll(notificationList)
             nextModelStatus = NotificationStatus.DELIVERED
         except Exception as exception:
             serviceException = exception

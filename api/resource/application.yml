@@ -61,6 +61,12 @@ queue-manager-api:
         emitter:
             timeout: 2
 
+voice-manager-api:
+    api-key: ${VOICE_MANAGER_API_API_KEY}
+
+telegram-manager-api:
+    api-key: ${TELEGRAM_MANAGER_API_API_KEY}
+
 swagger:
     # schemes: [${api.server.scheme}] ###- bug
     # host: ${SWAGGER_HOST:${api.server.host}}:${api.server.port} ###- bug

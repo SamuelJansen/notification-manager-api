@@ -8,22 +8,22 @@ from config import QueueConfig
 
 
 @MessageEmitter(
-    url = QueueConfig.SPEAK_ALL_EMITTER_BASE_URL,
+    url = QueueConfig.SEND_TELEGRAM_EMITTER_BASE_URL,
     headers = {
-        JwtConstant.DEFAULT_JWT_API_KEY_HEADER_NAME: f'Bearer {QueueConfig.SPEAK_ALL_EMITTER_API_KEY}'
+        JwtConstant.DEFAULT_JWT_API_KEY_HEADER_NAME: f'Bearer {QueueConfig.SEND_TELEGRAM_EMITTER_API_KEY}'
     },
-    timeout = QueueConfig.SPEAK_ALL_EMITTER_TIMEOUT,
+    timeout = QueueConfig.SEND_TELEGRAM_EMITTER_TIMEOUT,
 )
-class VoiceEmitter :
+class TelegramEmitter :
 
     @MessageEmitterMethod(
-        queueKey = QueueConfig.SPEAK_ALL_QUEUE_KEY,
+        queueKey = QueueConfig.SEND_TELEGRAM_QUEUE_KEY,
         requestClass=[[dict]]
     )
-    def speakAll(self, dtoList):
+    def messageAll(self, dtoList):
         self.emit(
             messageHeaders = {
-                JwtConstant.DEFAULT_JWT_API_KEY_HEADER_NAME: f'Bearer {QueueConfig.VOICE_MANAGER_API_API_KEY}'
+                JwtConstant.DEFAULT_JWT_API_KEY_HEADER_NAME: f'Bearer {QueueConfig.TELEGRAM_MANAGER_API_API_KEY}'
             },
             body = dtoList
         )

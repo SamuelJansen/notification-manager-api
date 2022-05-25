@@ -1,8 +1,7 @@
 from python_framework import SqlAlchemyProxy as sap
-from python_framework import ConverterStatic
+from python_framework import ConverterStatic, AuditoryUtil, AuditoryConstant
 
-from constant import AuditoryConstant, NotificationConstant
-from util import AuditoryUtil
+from constant import NotificationConstant
 from enumeration.NotificationSeverity import NotificationSeverity
 from enumeration.NotificationStatus import NotificationStatus
 from ModelAssociation import MODEL, NOTIFICATION
