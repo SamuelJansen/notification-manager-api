@@ -13,6 +13,8 @@ from notification_manager_api.api.src.config import NotificationConfig
 
 from notification_manager_api.api.src.manager.NotificationManager import NotificationManager
 
-from notification_manager_api.api.src.service import NotificationServiceProvicer
+from notification_manager_api.api.src.provider.service import NotificationServiceProvider
 
-from notification_manager_api.api.src.client.emitter import NotificationEmitterProvicer
+from notification_manager_api.api.src.provider.client.emitter import NotificationEmitterProvider
+
+from notification_manager_api.api.src.provider.validator import NotificationValidatorProvider

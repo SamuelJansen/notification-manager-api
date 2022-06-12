@@ -12,7 +12,8 @@ except:
         from notification_manager_api import NotificationConfig
 
 
-def getNotificationEmitter():
+def buildNotificationEmitter():
+    
     @MessageEmitter(
         url = NotificationConfig.EMITTER_BASE_URL,
         headers = {

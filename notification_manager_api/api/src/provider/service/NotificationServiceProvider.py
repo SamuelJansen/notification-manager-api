@@ -15,7 +15,8 @@ except:
         from notification_manager_api import NotificationDto
 
 
-def getNotificationService():
+def buildNotificationService():
+    
     @Service()
     class NotificationService:
 
