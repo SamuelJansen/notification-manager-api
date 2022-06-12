@@ -26,7 +26,6 @@ class NotificationManager:
         self.addServices(api, app)
         self.addEmitters(api, app)
         self.addValidators(api, app)
-        ###- ReflectionHelper.getItNaked(api)
         log.success(self.initialize, f'{ReflectionHelper.getClassName(self)} is running')
 
 
@@ -41,7 +40,7 @@ class NotificationManager:
             try:
                 from notification_manager_api.api.src.provider.service import NotificationServiceProvider
             except Exception as exception:
-                log.warning(log.warning, 'There are most likely an issue related to queue-manager-api dependencies imports', exception=exception)
+                log.warning(log.warning, 'There is most likely an issue related to queue-manager-api dependencies imports', exception=exception)
                 from notification_manager_api import NotificationServiceProvider
         ResourceManager.addServiceListTo(api, [NotificationServiceProvider.buildNotificationService()])
 
@@ -53,7 +52,7 @@ class NotificationManager:
             try:
                 from notification_manager_api.api.src.provider.client.emitter import NotificationEmitterProvider
             except Exception as exception:
-                log.warning(log.warning, 'There are most likely an issue related to queue-manager-api dependencies imports', exception=exception)
+                log.warning(log.warning, 'There is most likely an issue related to queue-manager-api dependencies imports', exception=exception)
                 from notification_manager_api import NotificationEmitterProvider
         ResourceManager.addServiceListTo(api, [NotificationEmitterProvider.buildNotificationEmitter()])
 
@@ -65,6 +64,6 @@ class NotificationManager:
             try:
                 from notification_manager_api.api.src.provider.validator import NotificationValidatorProvider
             except Exception as exception:
-                log.warning(log.warning, 'There are most likely an issue related to queue-manager-api dependencies imports', exception=exception)
+                log.warning(log.warning, 'There is most likely an issue related to queue-manager-api dependencies imports', exception=exception)
                 from notification_manager_api import NotificationEmitterProvider
         ResourceManager.addValidatorListTo(api, [NotificationValidatorProvider.buildNotificationValidator()])

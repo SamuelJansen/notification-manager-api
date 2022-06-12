@@ -8,12 +8,12 @@ except:
     try:
         from notification_manager_api.api.src.config import NotificationConfig
     except Exception as exception:
-        log.warning(log.warning, 'There are most likely an issue related to queue-manager-api dependencies imports', exception=exception)
+        log.warning(log.warning, 'There is most likely an issue related to queue-manager-api dependencies imports', exception=exception)
         from notification_manager_api import NotificationConfig
 
 
 def buildNotificationEmitter():
-    
+
     @MessageEmitter(
         url = NotificationConfig.EMITTER_BASE_URL,
         headers = {
