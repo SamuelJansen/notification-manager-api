@@ -13,7 +13,7 @@ sudo rm /usr/bin/pip
 sudo ln -s /usr/local/bin/pipX.Y /usr/bin/pip
 ''')
 
-VERSION = '0.0.9'
+VERSION = '0.0.10'
 
 SNAKE_CASE_NAME = 'notification_manager_api'
 PACKAGE_NAME = SNAKE_CASE_NAME

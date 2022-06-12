@@ -6,4 +6,4 @@ EMITTER_API_KEY = 'notification-manager-api.api-notifications.emitter.api-key'
 EMITTER_BASE_URL = 'notification-manager-api.api-notifications.emitter.base-url'
 EMITTER_TIMEOUT = 'notification-manager-api.api-notifications.emitter.timeout'
 
-NOTIFICATION_API_KEY = 'notification-manager-api.notification-queue.notification-api-key'
+NOTIFICATION_API_KEY = 'notification-manager-api.api-notifications.emitter.notification-api-key'
