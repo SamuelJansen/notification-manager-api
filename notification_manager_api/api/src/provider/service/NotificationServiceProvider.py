@@ -30,71 +30,88 @@ def buildNotificationService():
     class NotificationService:
 
         @ServiceMethod(requestClass=[str])
+        def notifyTest(self, text):
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.TEST, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
+
+        @ServiceMethod(requestClass=[str, [EnumItem]])
+        def notifyTestTo(self, text, destinyList):
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.TEST, destinyList)
+
+        @ServiceMethod(requestClass=[str])
         def notifyDebug(self, text):
-            return self.notifyBySeverityTo([text], NotificationSeverity.DEBUG, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.DEBUG, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
 
         @ServiceMethod(requestClass=[str, [EnumItem]])
         def notifyDebugTo(self, text, destinyList):
-            return self.notifyBySeverityTo([text], NotificationSeverity.DEBUG, destinyList)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.DEBUG, destinyList)
 
         @ServiceMethod(requestClass=[str])
-        def notifySettings(self, text):
-            return self.notifyBySeverityTo([text], NotificationSeverity.SETTINGS, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
+        def notifySetting(self, text):
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.SETTING, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
 
         @ServiceMethod(requestClass=[str, [EnumItem]])
-        def notifySettingsTo(self, text, destinyList):
-            return self.notifyBySeverityTo([text], NotificationSeverity.SETTINGS, destinyList)
+        def notifySettingTo(self, text, destinyList):
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.SETTING, destinyList)
 
         @ServiceMethod(requestClass=[str])
         def notifyInfo(self, text):
-            return self.notifyBySeverityTo([text], NotificationSeverity.INFO, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.INFO, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
 
         @ServiceMethod(requestClass=[str, [EnumItem]])
         def notifyInfoTo(self, text, destinyList):
-            return self.notifyBySeverityTo([text], NotificationSeverity.INFO, destinyList)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.INFO, destinyList)
 
         @ServiceMethod(requestClass=[str])
         def notifyStatus(self, text):
-            return self.notifyBySeverityTo([text], NotificationSeverity.STATUS, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.STATUS, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
 
         @ServiceMethod(requestClass=[str, [EnumItem]])
         def notifyStatusTo(self, text, destinyList):
-            return self.notifyBySeverityTo([text], NotificationSeverity.STATUS, destinyList)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.STATUS, destinyList)
 
         @ServiceMethod(requestClass=[str])
         def notifyWarning(self, text):
-            return self.notifyBySeverityTo([text], NotificationSeverity.WARNING, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.WARNING, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
 
         @ServiceMethod(requestClass=[str, [EnumItem]])
         def notifyWarningTo(self, text, destinyList):
-            return self.notifyBySeverityTo([text], NotificationSeverity.WARNING, destinyList)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.WARNING, destinyList)
 
         @ServiceMethod(requestClass=[str])
         def notifyFailure(self, text):
-            return self.notifyBySeverityTo([text], NotificationSeverity.FAILURE, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.FAILURE, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
 
         @ServiceMethod(requestClass=[str, [EnumItem]])
         def notifyFailureTo(self, text, destinyList):
-            return self.notifyBySeverityTo([text], NotificationSeverity.FAILURE, destinyList)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.FAILURE, destinyList)
 
         @ServiceMethod(requestClass=[str])
         def notifySuccess(self, text):
-            return self.notifyBySeverityTo([text], NotificationSeverity.SUCCESS, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.SUCCESS, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
 
         @ServiceMethod(requestClass=[str, [EnumItem]])
         def notifySuccessTo(self, text, destinyList):
-            return self.notifyBySeverityTo([text], NotificationSeverity.SUCCESS, destinyList)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.SUCCESS, destinyList)
 
         @ServiceMethod(requestClass=[str])
         def notifyError(self, text):
-            return self.notifyBySeverityTo([text], NotificationSeverity.ERROR, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.ERROR, NotificationConstant.DEFAULT_DESTINY_LIST_DTO)
 
         @ServiceMethod(requestClass=[str, [EnumItem]])
         def notifyErrorTo(self, text, destinyList):
-            return self.notifyBySeverityTo([text], NotificationSeverity.ERROR, destinyList)
+            return self.logAndNotifyBySeverityTo([text], NotificationSeverity.ERROR, destinyList)
 
         @ServiceMethod(requestClass=[[str], EnumItem, [EnumItem]])
-        def notifyBySeverityTo(self, textList, severity, destinyList):
+        def logAndNotifyBySeverityTo(self, textList, severity, destinyList):
+            for text in textList:
+                log.log(
+                    self.logAndNotifyBySeverityTo,
+                    text,
+                    exception = None,
+                    muteStackTrace = True,
+                    newLine = False,
+                    level = severity.logLevel
+                )
             return self.notifyAll([
                 NotificationDto.NotificationRequestDto(
                     message = str(text),
@@ -112,9 +129,9 @@ def buildNotificationService():
 
         @ServiceMethod(requestClass=[[NotificationDto.NotificationRequestDto]])
         def notifyAllByCurrentApiKey(self, dtoList):
-            notificationApiKey = FlaskUtil.safellyGetHeaders().get(JwtConstant.DEFAULT_JWT_API_KEY_HEADER_NAME, c.BLANK)
-            self.validator.notification.validateNotificationApiKey(notificationApiKey)
-            return self.emitter.notification.notifyAll(dtoList, notificationApiKey.split()[-1])
+            currentApiKeyWithBearer = FlaskUtil.safellyGetHeaders().get(JwtConstant.DEFAULT_JWT_API_KEY_HEADER_NAME, c.BLANK)
+            self.validator.notification.validateNotificationApiKey(currentApiKeyWithBearer)
+            return self.notifyAllByApiKey(dtoList, currentApiKeyWithBearer.split()[-1])
 
 
         @ServiceMethod(requestClass=[[NotificationDto.NotificationRequestDto], str])

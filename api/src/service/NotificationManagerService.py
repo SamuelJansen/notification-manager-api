@@ -47,13 +47,13 @@ class NotificationManagerService:
     @ServiceMethod(requestClass=[[NotificationDto.NotificationRequestDto]])
     def acceptAll(self, dtoList):
         modelList = self.persistAll(self.mapper.notificationManager.fromRequestDtoListToModelList(dtoList))
-        log.status(self.acceptAll, f'Accpeting notifications: {modelList}')
+        log.debug(self.acceptAll, f'Accpeting notifications: {modelList}')
         self.notifyAll(modelList)
 
 
     @ServiceMethod(requestClass=[[Notification.Notification]])
     def persistAll(self, modelList):
-        log.status(self.persistAll, f'Persisting notifications: {modelList}')
+        log.debug(self.persistAll, f'Persisting notifications: {modelList}')
         return self.repository.notificationManager.saveAll(modelList)
 
 
