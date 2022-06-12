@@ -6,10 +6,10 @@ try:
     from constant import NotificationConfigurationKeyConstant
 except:
     try:
-        from notification_manager_api import NotificationConfigurationKeyConstant
+        from notification_manager_api.api.src.constant import NotificationConfigurationKeyConstant
     except Exception as exception:
         log.warning(log.warning, 'There are most likely an issue related to queue-manager-api dependencies imports', exception=exception)
-        from notification_manager_api.api.src.constant import NotificationConfigurationKeyConstant
+        from notification_manager_api import NotificationConfigurationKeyConstant
 
 
 QUEUE_KEY = globalsInstance.getSetting(NotificationConfigurationKeyConstant.QUEUE_KEY)

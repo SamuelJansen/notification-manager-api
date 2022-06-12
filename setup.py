@@ -13,7 +13,7 @@ sudo rm /usr/bin/pip
 sudo ln -s /usr/local/bin/pipX.Y /usr/bin/pip
 ''')
 
-VERSION = '0.0.3'
+VERSION = '0.0.4'
 
 SNAKE_CASE_NAME = 'notification_manager_api'
 PACKAGE_NAME = SNAKE_CASE_NAME
@@ -32,6 +32,7 @@ setup(
         f'{PACKAGE_NAME}{OS_SEPARATOR}{API}',
         f'{PACKAGE_NAME}{OS_SEPARATOR}{API}{OS_SEPARATOR}{SRC}',
         f'{PACKAGE_NAME}{OS_SEPARATOR}{API}{OS_SEPARATOR}{SRC}{OS_SEPARATOR}client',
+        f'{PACKAGE_NAME}{OS_SEPARATOR}{API}{OS_SEPARATOR}{SRC}{OS_SEPARATOR}client{OS_SEPARATOR}emitter',
         f'{PACKAGE_NAME}{OS_SEPARATOR}{API}{OS_SEPARATOR}{SRC}{OS_SEPARATOR}config',
         f'{PACKAGE_NAME}{OS_SEPARATOR}{API}{OS_SEPARATOR}{SRC}{OS_SEPARATOR}constant',
         f'{PACKAGE_NAME}{OS_SEPARATOR}{API}{OS_SEPARATOR}{SRC}{OS_SEPARATOR}converter',

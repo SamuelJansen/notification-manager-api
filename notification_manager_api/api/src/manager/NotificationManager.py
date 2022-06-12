@@ -39,9 +39,10 @@ class NotificationManager:
             import NotificationService
         except:
             try:
-                from notification_manager_api import NotificationService
-            except:
                 from notification_manager_api.api.src.service import NotificationService
+            except Exception as exception:
+                log.warning(log.warning, 'There are most likely an issue related to queue-manager-api dependencies imports', exception=exception)
+                from notification_manager_api import NotificationService
         ResourceManager.addServiceListTo(api, [NotificationService.NotificationService])
 
 
@@ -50,7 +51,8 @@ class NotificationManager:
             import NotificationEmitter
         except:
             try:
-                from notification_manager_api import NotificationEmitter
-            except:
                 from notification_manager_api.api.src.client.emitter import NotificationEmitter
+            except Exception as exception:
+                log.warning(log.warning, 'There are most likely an issue related to queue-manager-api dependencies imports', exception=exception)
+                from notification_manager_api import NotificationEmitter
         ResourceManager.addServiceListTo(api, [NotificationEmitter.NotificationEmitter])

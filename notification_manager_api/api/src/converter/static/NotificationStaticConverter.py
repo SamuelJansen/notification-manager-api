@@ -8,16 +8,16 @@ try:
     from enumeration.NotificationDestiny import NotificationDestiny
 except:
     try:
-        from notification_manager_api import NotificationConstant
-        from notification_manager_api import NotificationSeverity
-        from notification_manager_api import NotificationStatus
-        from notification_manager_api import NotificationDestiny
-    except Exception as exception:
-        log.warning(log.warning, 'There are most likely an issue related to queue-manager-api dependencies imports', exception=exception)
         from notification_manager_api.api.src.constant import NotificationConstant
         from notification_manager_api.api.src.enumeration.NotificationSeverity import NotificationSeverity
         from notification_manager_api.api.src.enumeration.NotificationStatus import NotificationStatus
         from notification_manager_api.api.src.enumeration.NotificationDestiny import NotificationDestiny
+    except Exception as exception:
+        log.warning(log.warning, 'There are most likely an issue related to queue-manager-api dependencies imports', exception=exception)
+        from notification_manager_api import NotificationConstant
+        from notification_manager_api import NotificationSeverity
+        from notification_manager_api import NotificationStatus
+        from notification_manager_api import NotificationDestiny
 
 
 def toMessage(message):

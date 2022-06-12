@@ -7,12 +7,12 @@ try:
     import NotificationDto
 except:
     try:
-        from notification_manager_api import NotificationConfig
-        from notification_manager_api import NotificationDto
-    except Exception as exception:
-        log.warning(log.warning, 'There are most likely an issue related to queue-manager-api dependencies imports', exception=exception)
         from notification_manager_api.api.src.config import NotificationConfig
         from notification_manager_api.api.src.dto import NotificationDto
+    except Exception as exception:
+        log.warning(log.warning, 'There are most likely an issue related to queue-manager-api dependencies imports', exception=exception)
+        from notification_manager_api import NotificationConfig
+        from notification_manager_api import NotificationDto
 
 
 @Service()
