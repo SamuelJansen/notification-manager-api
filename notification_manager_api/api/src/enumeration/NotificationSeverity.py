@@ -10,9 +10,10 @@ class NotificationSeverityEnumeration :
     SETTINGS = EnumItem(degree=1)
     INFO = EnumItem(degree=2)
     STATUS = EnumItem(degree=3)
-    
+
     WARNING = EnumItem(degree=4)
     FAILURE = EnumItem(degree=5)
-    ERROR = EnumItem(degree=6)
+    SUCCESS = EnumItem(degree=6)
+    ERROR = EnumItem(degree=7)
 
 NotificationSeverity = NotificationSeverityEnumeration()

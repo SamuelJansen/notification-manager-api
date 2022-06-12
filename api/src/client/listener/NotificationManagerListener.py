@@ -1,4 +1,3 @@
-from python_helper import log
 from python_framework import HttpStatus
 from queue_manager_api import MessageListener, MessageListenerMethod
 
@@ -13,7 +12,7 @@ import NotificationDto
     , logRequest = True
     , logResponse = True
 )
-class NotificationListener:
+class NotificationManagerListener:
 
     @MessageListenerMethod(url = '/listener/notifications',
         requestClass = [[NotificationDto.NotificationRequestDto]],
@@ -23,4 +22,4 @@ class NotificationListener:
         , logResponse = True
     )
     def acceptAll(self, dtoList):
-        return self.service.notification.acceptAll(dtoList), HttpStatus.ACCEPTED
+        return self.service.notificationManager.acceptAll(dtoList), HttpStatus.ACCEPTED

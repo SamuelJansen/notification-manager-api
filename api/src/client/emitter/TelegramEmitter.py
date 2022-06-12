@@ -1,8 +1,5 @@
-import requests
-from python_helper import Constant as c
-from python_helper import log, ObjectHelper, StringHelper
 from queue_manager_api import MessageEmitter, MessageEmitterMethod
-from python_framework import HttpStatus, GlobalException, JwtConstant, FlaskUtil
+from python_framework import JwtConstant
 
 from config import QueueConfig
 
@@ -14,7 +11,7 @@ from config import QueueConfig
     },
     timeout = QueueConfig.SEND_TELEGRAM_EMITTER_TIMEOUT,
 )
-class TelegramEmitter :
+class TelegramEmitter:
 
     @MessageEmitterMethod(
         queueKey = QueueConfig.SEND_TELEGRAM_QUEUE_KEY,

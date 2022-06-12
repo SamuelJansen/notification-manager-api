@@ -6,7 +6,7 @@ import Notification
 
 
 @Repository(model = Notification.Notification)
-class NotificationRepository:
+class NotificationManagerRepository:
 
     def findAll(self):
         return self.repository.findAllAndCommit(self.model)

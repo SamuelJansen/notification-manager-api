@@ -9,7 +9,7 @@ RECEIVED_STATUS = NotificationStatus.RECEIVED
 
 
 @Mapper()
-class NotificationMapper:
+class NotificationManagerMapper:
 
     @MapperMethod(requestClass=[[NotificationDto.NotificationRequestDto]], responseClass=[[Notification.Notification]])
     def fromRequestDtoListToModelList(self, dtoList, modelList):
