@@ -1,5 +1,5 @@
 from python_helper import Constant as c
-from python_helper import ObjectHelper
+from python_helper import ObjectHelper, log
 from python_framework import Service, ServiceMethod, FlaskUtil, JwtConstant
 
 try:
@@ -9,7 +9,8 @@ except:
     try:
         from notification_manager_api import NotificationConfig
         from notification_manager_api import NotificationDto
-    except:
+    except Exception as exception:
+        log.warning(log.debug, 'There are most likelly an issue related to queue-manager-api dependencies import', exception=exception)
         from notification_manager_api.api.src.config import NotificationConfig
         from notification_manager_api.api.src.dto import NotificationDto
 

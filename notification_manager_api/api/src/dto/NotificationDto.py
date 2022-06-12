@@ -1,9 +1,12 @@
+from python_helper import log
+
 try:
     from converter.static import NotificationStaticConverter
 except:
     try:
         from notification_manager_api import NotificationStaticConverter
-    except:
+    except Exception as exception:
+        log.warning(log.debug, 'There are most likelly an issue related to queue-manager-api dependencies import', exception=exception)
         from notification_manager_api.api.src.converter.static import NotificationStaticConverter
 
 

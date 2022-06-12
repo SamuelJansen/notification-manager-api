@@ -1,13 +1,14 @@
-from queue_manager_api import MessageEmitter, MessageEmitterMethod
+from python_helper import log
 from python_framework import JwtConstant
-from queue_manager_api import MessageDto
+from queue_manager_api import MessageDto, MessageEmitter, MessageEmitterMethod
 
 try:
     from config import NotificationConfig
 except:
     try:
         from notification_manager_api import NotificationConfig
-    except:
+    except Exception as exception:
+        log.warning(log.debug, 'There are most likelly an issue related to queue-manager-api dependencies import', exception=exception)
         from notification_manager_api.api.src.config import NotificationConfig
 
 

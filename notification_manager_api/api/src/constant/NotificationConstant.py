@@ -1,3 +1,4 @@
+from python_helper import log
 from python_framework import Serializer
 
 try:
@@ -9,7 +10,8 @@ except:
         from notification_manager_api import NotificationSeverity
         from notification_manager_api import NotificationStatus
         from notification_manager_api import NotificationDestiny
-    except:
+    except Exception as exception:
+        log.warning(log.debug, 'There are most likelly an issue related to queue-manager-api dependencies import', exception=exception)
         from notification_manager_api.api.src.enumeration.NotificationSeverity import NotificationSeverity
         from notification_manager_api.api.src.enumeration.NotificationStatus import NotificationStatus
         from notification_manager_api.api.src.enumeration.NotificationDestiny import NotificationDestiny
