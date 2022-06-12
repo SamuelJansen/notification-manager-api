@@ -1,5 +1,5 @@
 from python_helper import log
-from python_framework import ConverterStatic, Serializer
+from python_framework import StaticConverter, Serializer
 
 try:
     from constant import NotificationConstant
@@ -13,7 +13,7 @@ except:
         from notification_manager_api import NotificationStatus
         from notification_manager_api import NotificationDestiny
     except Exception as exception:
-        log.warning(log.debug, 'There are most likelly an issue related to queue-manager-api dependencies import', exception=exception)
+        log.warning(log.warning, 'There are most likely an issue related to queue-manager-api dependencies imports', exception=exception)
         from notification_manager_api.api.src.constant import NotificationConstant
         from notification_manager_api.api.src.enumeration.NotificationSeverity import NotificationSeverity
         from notification_manager_api.api.src.enumeration.NotificationStatus import NotificationStatus
@@ -21,14 +21,14 @@ except:
 
 
 def toMessage(message):
-    return ConverterStatic.getValueOrDefault(
+    return StaticConverter.getValueOrDefault(
         message,
         NotificationConstant.DEFAULT_MESSAGE
     )
 
 
 def toSeverity(severity):
-    return NotificationSeverity.map(ConverterStatic.getValueOrDefault(
+    return NotificationSeverity.map(StaticConverter.getValueOrDefault(
         severity,
         NotificationConstant.DEFAULT_SEVERITY
     ))
@@ -39,7 +39,7 @@ def toDestinyListDto(destinyList):
         destinyList = Serializer.convertFromJsonToDictionary(destinyList)
     return [
         NotificationDestiny.map(destiny)
-        for destiny in ConverterStatic.getValueOrDefault(
+        for destiny in StaticConverter.getValueOrDefault(
             destinyList,
             NotificationConstant.DEFAULT_DESTINY_LIST_DTO
         )
@@ -51,7 +51,7 @@ def toDestinyListModel(destinyList):
 
 
 def toStatus(status):
-     return NotificationStatus.map(ConverterStatic.getValueOrDefault(
+     return NotificationStatus.map(StaticConverter.getValueOrDefault(
         status,
         NotificationConstant.DEFAULT_STATUS
     ))
