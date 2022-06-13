@@ -42,6 +42,8 @@ class Notification(MODEL):
         AuditoryUtil.overrideApiKeyData(self)
 
     def getDestinyList(self):
+        # destinyList = NotificationStaticConverter.toDestinyListDto(self.destinyList)
+        # print(destinyList)
         return NotificationStaticConverter.toDestinyListDto(self.destinyList)
 
     def __repr__(self):

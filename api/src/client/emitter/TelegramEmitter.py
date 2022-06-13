@@ -9,13 +9,18 @@ from config import QueueConfig
     headers = {
         JwtConstant.DEFAULT_JWT_API_KEY_HEADER_NAME: f'Bearer {QueueConfig.SEND_TELEGRAM_EMITTER_API_KEY}'
     },
-    timeout = QueueConfig.SEND_TELEGRAM_EMITTER_TIMEOUT,
+    timeout = QueueConfig.SEND_TELEGRAM_EMITTER_TIMEOUT
+    # , muteLogs = False
+    # , logRequest = True
+    # , logResponse = True
 )
 class TelegramEmitter:
 
     @MessageEmitterMethod(
         queueKey = QueueConfig.SEND_TELEGRAM_QUEUE_KEY,
         requestClass=[[dict]]
+        # , logRequest = True
+        # , logResponse = True
     )
     def messageAll(self, dtoList):
         self.emit(

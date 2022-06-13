@@ -9,13 +9,18 @@ from config import QueueConfig
     headers = {
         JwtConstant.DEFAULT_JWT_API_KEY_HEADER_NAME: f'Bearer {QueueConfig.SPEAK_ALL_EMITTER_API_KEY}'
     },
-    timeout = QueueConfig.SPEAK_ALL_EMITTER_TIMEOUT,
+    timeout = QueueConfig.SPEAK_ALL_EMITTER_TIMEOUT
+    # , muteLogs = False
+    # , logRequest = True
+    # , logResponse = True
 )
 class VoiceEmitter:
 
     @MessageEmitterMethod(
         queueKey = QueueConfig.SPEAK_ALL_QUEUE_KEY,
         requestClass=[[dict]]
+        # , logRequest = True
+        # , logResponse = True
     )
     def speakAll(self, dtoList):
         self.emit(

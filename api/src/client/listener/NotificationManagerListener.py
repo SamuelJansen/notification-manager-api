@@ -9,8 +9,8 @@ import NotificationDto
 @MessageListener(
     timeout = QueueConfig.API_NOTIFICATIONS_LISTENER_TIMEOUT
     , muteLogs = False
-    , logRequest = True
-    , logResponse = True
+    # , logRequest = True
+    # , logResponse = True
 )
 class NotificationManagerListener:
 
@@ -18,8 +18,8 @@ class NotificationManagerListener:
         requestClass = [[NotificationDto.NotificationRequestDto]],
         apiKeyRequired=[ApiKeyContext.ADMIN, ApiKeyContext.USER, ApiKeyContext.API],
         runInAThread = True
-        , logRequest = True
-        , logResponse = True
+        # , logRequest = True
+        # , logResponse = True
     )
     def acceptAll(self, dtoList):
         return self.service.notificationManager.acceptAll(dtoList), HttpStatus.ACCEPTED
