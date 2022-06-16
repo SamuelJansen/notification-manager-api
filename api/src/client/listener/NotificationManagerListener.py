@@ -16,8 +16,8 @@ class NotificationManagerListener:
 
     @MessageListenerMethod(url = '/listener/notifications',
         requestClass = [[NotificationDto.NotificationRequestDto]],
-        apiKeyRequired=[ApiKeyContext.ADMIN, ApiKeyContext.USER, ApiKeyContext.API],
-        runInAThread = True
+        apiKeyRequired=[ApiKeyContext.ADMIN, ApiKeyContext.USER, ApiKeyContext.API]
+        , runInAThread = True
         # , logRequest = True
         # , logResponse = True
     )
