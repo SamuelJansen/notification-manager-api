@@ -37,7 +37,7 @@ api:
         timeout: 30
 
 notification:
-    current-degree: 0
+    current-degree: ${CURRENT_NOTIFICATION_LOG_DEGREE:2}
 
 queue-manager-api:
     base-url: ${QUEUE_MANAGER_API_HOST}/queue-manager-api
