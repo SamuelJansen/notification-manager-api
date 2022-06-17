@@ -1,4 +1,4 @@
-CURRENT_NOTIFICARION_DEGREE = 'notification-manager-api.current-degree'
+CURRENT_NOTIFICARION_DEGREE = 'notification-manager-api.severity.current-degree'
 
 QUEUE_KEY = 'notification-manager-api.api-notifications.queue-key'
 
