@@ -13,7 +13,7 @@ sudo rm /usr/bin/pip
 sudo ln -s /usr/local/bin/pipX.Y /usr/bin/pip
 ''')
 
-VERSION = '0.0.13'
+VERSION = '0.0.14'
 
 SNAKE_CASE_NAME = 'notification_manager_api'
 PACKAGE_NAME = SNAKE_CASE_NAME
@@ -60,8 +60,8 @@ setup(
     download_url = f'{URL}archive/v{VERSION}.tar.gz',
     keywords = ['queue', 'topic'],
     install_requires = [
-        'python-framework<1.0.0,>=0.3.91',
-        'queue-manager-api<1.0.0,>=0.1.34',
+        'python-framework<1.0.0,>=0.4.8',
+        'queue-manager-api<1.0.0,>=0.1.41',
         'globals<1.0,>=0.3.34',
         'python-helper<1.0,>=0.3.51'
     ],

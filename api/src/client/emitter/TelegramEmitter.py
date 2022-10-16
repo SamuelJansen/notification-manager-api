@@ -23,7 +23,7 @@ class TelegramEmitter:
         # , logResponse = True
     )
     def messageAll(self, dtoList):
-        self.emit(
+        return self.emit(
             messageHeaders = {
                 JwtConstant.DEFAULT_JWT_API_KEY_HEADER_NAME: f'Bearer {QueueConfig.TELEGRAM_MANAGER_API_API_KEY}'
             },

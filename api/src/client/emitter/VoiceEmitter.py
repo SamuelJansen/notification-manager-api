@@ -23,7 +23,7 @@ class VoiceEmitter:
         # , logResponse = True
     )
     def speakAll(self, dtoList):
-        self.emit(
+        return self.emit(
             messageHeaders = {
                 JwtConstant.DEFAULT_JWT_API_KEY_HEADER_NAME: f'Bearer {QueueConfig.VOICE_MANAGER_API_API_KEY}'
             },
