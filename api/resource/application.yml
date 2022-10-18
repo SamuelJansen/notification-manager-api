@@ -73,7 +73,7 @@ notification-manager-api:
             api-key: ${queue-manager-api.api-key}
             notification-api-key: ${NOTIFICATION_MANAGER_API_API_KEY}
             base-url: ${queue-manager-api.base-url}
-            timeout: (2,1)
+            timeout: (2,5)
 
 swagger:
     # schemes: [${api.server.scheme}] ###- bug
